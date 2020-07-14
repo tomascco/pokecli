@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     pokecli (0.1.0)
+      thor
 
 GEM
   remote: https://rubygems.org/
