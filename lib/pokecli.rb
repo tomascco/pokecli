@@ -1,4 +1,4 @@
-require "pokecli/version"
+require 'pokecli/version'
 
 module Pokecli
   class Error < StandardError; end
