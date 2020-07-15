@@ -1,0 +1,9 @@
+AllCops:
+  NewCops: enable
+
+require:
+  - rubocop-performance
+  - rubocop-minitest
+
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: false
