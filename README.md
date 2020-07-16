@@ -1,28 +1,20 @@
-# Pokecli
+# PokeCLI
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/pokecli`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+PokeCLI is a command line Pokédex and a wrapper for https://pokeapi.co/, written using functional programming principles using Ruby and the [u-case](https://github.com/serradura/u-case) gem.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'pokecli'
-```
-
-And then execute:
-
-    $ bundle install
-
-Or install it yourself as:
+Install it running:
 
     $ gem install pokecli
 
 ## Usage
 
-TODO: Write usage instructions here
+This is a WIP and only supports querying for Pokémons' abilities.
+
+Example:
+
+    $ poke ability Desolate Land
 
 ## Development
 
