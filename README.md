@@ -10,11 +10,13 @@ Install it running:
 
 ## Usage
 
-This is a WIP and only supports querying for Pokémons' abilities.
+This is a WIP and only supports displaying the raw data from PokéAPI.
 
 Example:
 
-    $ poke ability Desolate Land
+    $ poke query ability Desolate Land
+
+    $ poke query pokemon Eevee
 
 ## Development
 
