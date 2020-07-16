@@ -11,6 +11,7 @@ module Pokecli
       p Step::FormatParams.({entity: entity, name_args: name_args})
           .then(Step::ComposeURL)
           .then(Step::PerformRequest)
+          .value
     end
   end
 end
