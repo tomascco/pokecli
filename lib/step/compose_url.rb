@@ -5,10 +5,10 @@ require 'u-case'
 module Step
   URL = 'https://pokeapi.co/api/v2'
   class ComposeURL < Micro::Case
-    attributes :params
+    attributes :entity, :name
 
     def call!
-      Success { "#{URL}/#{params[:entity]}/#{params[:name]}" }
+      Success { {url: "#{URL}/#{entity}/#{name}"} }
     end
   end
 end
