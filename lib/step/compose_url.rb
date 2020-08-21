@@ -8,7 +8,7 @@ module Step
     attributes :entity, :name
 
     def call!
-      Success { {url: "#{URL}/#{entity}/#{name}"} }
+      Success result: {url: "#{URL}/#{entity}/#{name}"}
     end
   end
 end

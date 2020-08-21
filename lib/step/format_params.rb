@@ -10,7 +10,7 @@ module Step
       formatted_name = name_args.join('-')
                                 .downcase
 
-      Success { {entity: formatted_entity, name: formatted_name} }
+      Success result: {entity: formatted_entity, name: formatted_name}
     end
   end
 end
