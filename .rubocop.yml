@@ -7,3 +7,9 @@ require:
 
 Layout/SpaceInsideHashLiteralBraces:
   Enabled: false
+
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
