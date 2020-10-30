@@ -10,7 +10,6 @@ module Pokecli
     Step::PerformRequest
   ])
   class CLI < Thor
-
     desc 'pokemon POKEMON', 'queries for an pokemon named POKEMON'
     def pokemon(*name_args)
       p GetEntityData.call({entity: :pokemon, name_args: name_args})

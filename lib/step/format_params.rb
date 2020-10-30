@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-require 'u-case'
 
+require 'u-case'
 module Step
   class FormatParams < Micro::Case
     attributes :entity, :name_args

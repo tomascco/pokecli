@@ -13,3 +13,6 @@ Layout/FirstArrayElementIndentation:
 
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
+
+Style/Documentation:
+  Enabled: false
