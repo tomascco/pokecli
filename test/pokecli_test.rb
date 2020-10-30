@@ -29,4 +29,35 @@ class PokecliTest < Minitest::Test
 
     assert_equal('https://pokeapi.co/api/v2/ability/desolate-land', result[:url])
   end
+
+  def test_perform_request
+    success_body = File.new('test/request.txt')
+    stub_request(:any, 'https://pokeapi.co/api/v2/ability/desolate-land')
+      .to_return(body: success_body)
+
+    success_result = Step::PerformRequest.call(url: 'https://pokeapi.co/api/v2/ability/desolate-land')
+
+    assert(success_result.success?)
+
+    # --
+
+    failure_body = 'Not Found'
+    stub_request(:any, 'https://pokeapi.co/api/v2/ability/desolate-land')
+      .to_return(body: failure_body)
+
+    failure_result = Step::PerformRequest.call(url: 'https://pokeapi.co/api/v2/ability/desolate-land')
+
+    assert(failure_result.failure?)
+  end
+
+  def test_format_output
+    response = File.read('test/request.txt')
+    response_hash = JSON.parse(response, symbolize_names: true)
+    expected_output = File.read('test/output.txt')
+
+    result = Step::FormatOutput
+      .call(response: response_hash, entity: :ability, name: 'desolate-land')
+
+    assert_equal(expected_output, result[:data])
+  end
 end
