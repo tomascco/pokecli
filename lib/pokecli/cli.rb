@@ -19,8 +19,9 @@ module Pokecli
 
     desc 'ability ABILITY', 'queries for an ability named ABILITY'
     def ability(*name_args)
-      GetEntityData.call({entity: :ability, name_args: name_args})
+      result = GetEntityData.call({entity: :ability, name_args: name_args})
         .then(Step::FormatOutput)
+      puts(result[:data])
     end
   end
 end
