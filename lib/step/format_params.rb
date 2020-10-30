@@ -7,8 +7,7 @@ module Step
 
     def call!
       formatted_entity = entity.downcase
-      formatted_name = name_args.join('-')
-                                .downcase
+      formatted_name = name_args.join('-').downcase
 
       Success result: {entity: formatted_entity, name: formatted_name}
     end

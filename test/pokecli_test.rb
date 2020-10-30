@@ -25,8 +25,8 @@ class PokecliTest < Minitest::Test
   def test_compose_url
     params = {entity: 'ability', name: 'desolate-land'}
 
-    url = Step::ComposeURL.(params: params)
+    result = Step::ComposeURL.call(params)
 
-    assert_equal 'https://pokeapi.co/api/v2/ability/desolate-land', url.value
+    assert_equal('https://pokeapi.co/api/v2/ability/desolate-land', result[:url])
   end
 end
