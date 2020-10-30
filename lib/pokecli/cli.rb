@@ -10,11 +10,17 @@ module Pokecli
     Step::PerformRequest
   ])
   class CLI < Thor
-    
-    desc 'query ENTITY NAME', 'queries for an entity named NAME'
-    def query(entity, *name_args)
-      p GetEntityData.({entity: entity, name_args: name_args})
-                     .value
+
+    desc 'pokemon POKEMON', 'queries for an pokemon named POKEMON'
+    def pokemon(*name_args)
+      p GetEntityData.call({entity: :pokemon, name_args: name_args})
+        .then(Step::FormatOutput)
+    end
+
+    desc 'ability ABILITY', 'queries for an ability named ABILITY'
+    def ability(*name_args)
+      GetEntityData.call({entity: :ability, name_args: name_args})
+        .then(Step::FormatOutput)
     end
   end
 end
