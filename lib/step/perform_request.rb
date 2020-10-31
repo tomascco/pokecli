@@ -11,7 +11,7 @@ module Step
     def call!
       uri = URI(url)
       response = Net::HTTP.get(uri)
-      return Failure(:not_found) { 'The resource was not found.' } if response == 'Not Found'
+      return Failure(:not_found) if response == 'Not Found'
 
       parsed_response = JSON.parse(response, symbolize_names: true)
 
