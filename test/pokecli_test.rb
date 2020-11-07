@@ -37,7 +37,7 @@ class PokecliTest < Minitest::Test
 
     success_result = Step::PerformRequest.call(url: 'https://pokeapi.co/api/v2/ability/desolate-land')
 
-    assert(success_result.success?)
+    assert_predicate(success_result, :success?)
 
     # --
 
@@ -47,7 +47,7 @@ class PokecliTest < Minitest::Test
 
     failure_result = Step::PerformRequest.call(url: 'https://pokeapi.co/api/v2/ability/desolate-land')
 
-    assert(failure_result.failure?)
+    assert_predicate(failure_result, :failure?)
   end
 
   def test_format_output
