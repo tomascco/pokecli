@@ -3,6 +3,8 @@
 require 'test_helper'
 
 class PokecliTest < Minitest::Test
+  include Pokecli::GetEntityData::Step
+
   def test_that_it_has_a_version_number
     refute_nil ::Pokecli::VERSION
   end
@@ -14,28 +16,27 @@ class PokecliTest < Minitest::Test
                {entity: 'ability', name_args: %w[desolate land]},
                {entity: 'ABILITY', name_args: %w[desolate land]}]
 
-    params_results = strings.map(&Step::FormatParams)
-    params_values = params_results.map(&:value)
+    results = strings.map(&FormatParams)
 
-    params_values.each do |param|
-      assert_equal({entity: 'ability', name: 'desolate-land'}, param)
+    results.each do |result|
+      assert_equal({entity: 'ability', name: 'desolate-land'}, result.data)
     end
   end
 
   def test_compose_url
     params = {entity: 'ability', name: 'desolate-land'}
 
-    result = Step::ComposeURL.call(params)
+    result = ComposeURL.call(params)
 
     assert_equal('https://pokeapi.co/api/v2/ability/desolate-land', result[:url])
   end
 
   def test_perform_request
-    success_body = File.new('test/request.txt')
+    success_body = File.new('test/snapshots/request.txt')
     stub_request(:any, 'https://pokeapi.co/api/v2/ability/desolate-land')
       .to_return(body: success_body)
 
-    success_result = Step::PerformRequest.call(url: 'https://pokeapi.co/api/v2/ability/desolate-land')
+    success_result = PerformRequest.call(url: 'https://pokeapi.co/api/v2/ability/desolate-land')
 
     assert_predicate(success_result, :success?)
 
@@ -45,18 +46,18 @@ class PokecliTest < Minitest::Test
     stub_request(:any, 'https://pokeapi.co/api/v2/ability/desolate-land')
       .to_return(body: failure_body)
 
-    failure_result = Step::PerformRequest.call(url: 'https://pokeapi.co/api/v2/ability/desolate-land')
+    failure_result = PerformRequest.call(url: 'https://pokeapi.co/api/v2/ability/desolate-land')
 
     assert_predicate(failure_result, :failure?)
   end
 
   def test_format_output
-    response = File.read('test/request.txt')
+    response = File.read('test/snapshots/request.txt')
     response_hash = JSON.parse(response, symbolize_names: true)
-    expected_output = File.read('test/output.txt')
 
-    result = Step::FormatOutput
-      .call(response: response_hash, entity: :ability, name: 'desolate-land')
+    expected_output = File.read('test/snapshots/output.txt')
+
+    result = FormatOutput.call(response: response_hash, entity: :ability, name: 'desolate-land')
 
     assert_equal(expected_output, result[:data])
   end

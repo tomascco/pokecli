@@ -5,7 +5,7 @@ SimpleCov.start
 
 $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 
-require 'pokecli'
+require 'pokecli/get_entity_data'
 
 require 'minitest/autorun'
 require 'minitest/pride'
