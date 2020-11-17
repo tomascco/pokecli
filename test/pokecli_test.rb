@@ -3,7 +3,7 @@
 require 'test_helper'
 
 class PokecliTest < Minitest::Test
-  include Pokecli::GetEntityData::Step
+  include Pokecli::GetEntityData
 
   def test_that_it_has_a_version_number
     refute_nil ::Pokecli::VERSION
