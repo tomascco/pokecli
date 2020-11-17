@@ -5,6 +5,7 @@ module Pokecli
     class FormatOutput < Micro::Case
       attributes :response, :entity, :name
       Unslugify = ->name { name.tr('-', ' ').capitalize }
+      StatFormatter = ->stat { "#{stat[0].capitalize}: #{stat[1]}" }
 
       def call!
         Success result: {data: method(entity).call}
@@ -12,7 +13,21 @@ module Pokecli
 
       private
 
-      def pokemon; end
+      def pokemon
+        learned_abilities = response[:abilities].map { |ability| ability.dig(:ability, :name) }
+        pokedex_number = response[:id]
+        base_stats = response[:stats].map { |stat| [stat.dig(:stat, :name), stat[:base_stat]] }
+        types = response[:types].map { |type| type.dig(:type, :name) }
+
+        <<~POKEMON
+          Pokemon: #{Unslugify.call(name)} (N° #{pokedex_number})
+          Types: #{types.map(&:capitalize).join('/')}
+          Abilities: #{learned_abilities.map(&Unslugify).join(', ')}
+
+          Base stats:
+          #{base_stats.map(&StatFormatter).join("\n")}
+        POKEMON
+      end
 
       def ability
         effect = response[:effect_entries]
