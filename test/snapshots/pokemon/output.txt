@@ -1,0 +1,11 @@
+Pokemon: Eevee (N° 133)
+Types: Normal
+Abilities: Run away, Adaptability, Anticipation
+
+Base stats:
+Hp: 55
+Attack: 55
+Defense: 50
+Special-attack: 45
+Special-defense: 65
+Speed: 55

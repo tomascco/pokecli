@@ -32,7 +32,7 @@ module Pokecli
       end
 
       def test_perform_request
-        success_body = File.new('test/snapshots/request.txt')
+        success_body = File.new('test/snapshots/ability/request.txt')
         stub_request(:any, 'https://pokeapi.co/api/v2/ability/desolate-land')
           .to_return(body: success_body)
 
@@ -52,14 +52,23 @@ module Pokecli
       end
 
       def test_format_output
-        response = File.read('test/snapshots/request.txt')
-        response_hash = JSON.parse(response, symbolize_names: true)
+        ability_request = File.read('test/snapshots/ability/request.txt')
+        ability_response = JSON.parse(ability_request, symbolize_names: true)
+        ability_expected_output = File.read('test/snapshots/ability/output.txt')
 
-        expected_output = File.read('test/snapshots/output.txt')
+        result = FormatOutput.call(response: ability_response, entity: :ability, name: 'desolate-land')
 
-        result = FormatOutput.call(response: response_hash, entity: :ability, name: 'desolate-land')
+        assert_equal(ability_expected_output, result[:data])
 
-        assert_equal(expected_output, result[:data])
+        # --
+
+        pokemon_request = File.read('test/snapshots/pokemon/request.txt')
+        pokemon_response = JSON.parse(pokemon_request, symbolize_names: true)
+        pokemon_expected_output = File.read('test/snapshots/pokemon/output.txt')
+
+        result = FormatOutput.call(response: pokemon_response, entity: :pokemon, name: 'eevee')
+
+        assert_equal(pokemon_expected_output, result[:data])
       end
     end
   end
