@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'thor'
-require 'pokecli/get_entity_data'
 
 module Pokecli
   class CLI < Thor
