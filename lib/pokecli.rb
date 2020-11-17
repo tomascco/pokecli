@@ -6,5 +6,13 @@ require 'pokecli/get_entity_data'
 
 module Pokecli
   class Error < StandardError; end
-  # Your code goes here...
+  module Utils
+    Compose = lambda do |*funcs|
+      lambda do |value|
+        funcs.reduce(value) do |input, fn|
+          fn.call(input)
+        end
+      end
+    end
+  end
 end

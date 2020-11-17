@@ -34,7 +34,7 @@ module Pokecli
           .find { |effect_object| effect_object.dig(:language, :name) == 'en' }
           .fetch(:effect)
         learning_pokemon = response[:pokemon]
-          .map(&->ability { ability.dig(:pokemon, :name) } >> Unslugify)
+          .map(&Utils::Compose[->ability { ability.dig(:pokemon, :name) }, Unslugify])
           .join("\n")
 
         <<~POKEMON
@@ -45,6 +45,8 @@ module Pokecli
           #{learning_pokemon}
         POKEMON
       end
+
+      private_constant :Unslugify, :StatFormatter
     end
   end
 end
