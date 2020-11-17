@@ -19,7 +19,7 @@ module Pokecli
     def get_entity_data(entity:, name_args:)
       GetEntityData::Flow.call(entity: entity, name_args: name_args)
         .on_success { |result| puts result[:data] }
-        .on_failure { puts 'An error ocurred' }
+        .on_failure { puts 'Resource not found' }
     end
   end
 end
