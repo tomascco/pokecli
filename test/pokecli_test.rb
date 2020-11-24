@@ -23,20 +23,12 @@ module Pokecli
         end
       end
 
-      def test_compose_url
-        params = {entity: 'ability', name: 'desolate-land'}
-
-        result = ComposeURL.call(params)
-
-        assert_equal('https://pokeapi.co/api/v2/ability/desolate-land', result[:url])
-      end
-
       def test_perform_request
         success_body = File.new('test/snapshots/ability/request.txt')
         stub_request(:any, 'https://pokeapi.co/api/v2/ability/desolate-land')
           .to_return(body: success_body)
 
-        success_result = PerformRequest.call(url: 'https://pokeapi.co/api/v2/ability/desolate-land')
+        success_result = PerformRequest.call(entity: :ability, name: 'desolate-land')
 
         assert_predicate(success_result, :success?)
 
@@ -46,7 +38,7 @@ module Pokecli
         stub_request(:any, 'https://pokeapi.co/api/v2/ability/desolate-land')
           .to_return(body: failure_body)
 
-        failure_result = PerformRequest.call(url: 'https://pokeapi.co/api/v2/ability/desolate-land')
+        failure_result = PerformRequest.call(entity: :ability, name: 'desolate-land')
 
         assert_predicate(failure_result, :failure?)
       end
