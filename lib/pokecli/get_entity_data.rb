@@ -12,7 +12,5 @@ module Pokecli
       PerformRequest,
       FormatOutput
     ])
-    BASE_URL = 'https://pokeapi.co/api/v2'
-    BuildURL = ->entity, name { "#{BASE_URL}/#{entity}/#{name}" }
   end
 end

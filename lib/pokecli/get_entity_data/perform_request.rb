@@ -8,6 +8,8 @@ module Pokecli
     class PerformRequest < Micro::Case
       attributes :entity, :name
 
+      BuildURL = ->entity, name { "https://pokeapi.co/api/v2/#{entity}/#{name}" }
+
       def call!
         uri = URI(BuildURL[entity, name])
         response = Net::HTTP.get(uri)
