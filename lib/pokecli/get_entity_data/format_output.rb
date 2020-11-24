@@ -1,14 +1,22 @@
 # frozen_string_literal: true
 
+require 'pokecli/get_entity_data/format_output/ability'
+require 'pokecli/get_entity_data/format_output/pokemon'
+require 'pokecli/get_entity_data/format_output/move'
+
 module Pokecli
   module GetEntityData
     class FormatOutput < Micro::Case
-      attributes :response, :entity, :name
-      Unslugify = ->name { name.tr('-', ' ').capitalize }
-      StatFormatter = ->stat { "#{stat[0].capitalize}: #{stat[1]}" }
+      attributes :response, :entity
+
+      FORMATTER_MAP = {
+        pokemon: Pokemon,
+        entity: Entity,
+        move: Move
+      }.freeze
 
       def call!
-        Success result: {data: apply(entity).call}
+        call(FORMATTER_MAP.fetch(entity), response)
       end
 
       private
