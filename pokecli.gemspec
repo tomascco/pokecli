@@ -5,6 +5,7 @@ require_relative 'lib/pokecli/version'
 Gem::Specification.new do |spec|
   spec.name          = 'pokecli'
   spec.version       = Pokecli::VERSION
+  spec.required_ruby_version = '>= 2.7.0'
   spec.authors       = ['Tomás Coelho']
   spec.email         = ['tomascoelho6@gmail.com']
 

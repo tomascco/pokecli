@@ -14,8 +14,14 @@ Layout/FirstArrayElementIndentation:
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
-Style/StabbyLambdaParentheses:
-  EnforcedStyle: require_no_parentheses
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Lambda:
+  EnforcedStyle: literal
+
+Style/FormatStringToken:
+  EnforcedStyle: template
 
 Style/Documentation:
   Enabled: false

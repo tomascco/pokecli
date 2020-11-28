@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pokecli (0.1.0)
+    pokecli (0.2.0)
       thor
       u-case
 
@@ -30,9 +30,9 @@ GEM
       rack
     rainbow (3.0.0)
     rake (12.3.3)
-    regexp_parser (1.8.2)
+    regexp_parser (2.0.0)
     rexml (3.2.4)
-    rubocop (1.4.1)
+    rubocop (1.4.2)
       parallel (~> 1.10)
       parser (>= 2.7.1.5)
       rainbow (>= 2.2.2, < 4.0)
@@ -41,11 +41,11 @@ GEM
       rubocop-ast (>= 1.1.1)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (1.1.1)
+    rubocop-ast (1.2.0)
       parser (>= 2.7.1.5)
     rubocop-minitest (0.10.1)
       rubocop (>= 0.87)
-    rubocop-performance (1.9.0)
+    rubocop-performance (1.9.1)
       rubocop (>= 0.90.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.10.1)
