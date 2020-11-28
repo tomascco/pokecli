@@ -8,7 +8,7 @@ module Pokecli
       StatFormatter = ->stat { "#{stat[0].capitalize}: #{stat[1]}" }
 
       def call!
-        Success result: {data: method(entity).call}
+        Success result: {data: apply(entity).call}
       end
 
       private
